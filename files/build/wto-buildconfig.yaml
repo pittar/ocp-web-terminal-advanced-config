@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-uri: https://github.com/pittar/ocp-web-terminal-advanced-config.git
+  name: wto-buildconfig
+  namespace: wto-image-builder
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    pushSecret:
+      name: quay
+    to:
+      kind: DockerImage
+      name: quay.io/pittar/custom-wto:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /
+    git:
+      uri: https://github.com/pittar/ocp-web-terminal-advanced-config.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Containerfile
+    type: Docker
+  successfulBuildsHistoryLimit: 5

@@ -1,1 +1,14 @@
-# ConfigMap with Proxy settings.
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: proxy-settings
+  namespace: openshift-terminal
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-configmap: 'true'
+  annotations:
+    controller.devfile.io/mount-as: env
+data:
+  http_proxy: "http://proxy.example.com:8080"
+  https_proxy: "http://proxy.example.com:8080"
+  no_proxy: "localhost,127.0.0.1,.localdomain"

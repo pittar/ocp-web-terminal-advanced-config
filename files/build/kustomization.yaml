@@ -1,0 +1,7 @@
+namespace: wto-image-builder
+
+resources:
+  - namespace.yaml
+  - image-registry-creds-secret.yaml
+  - builder-serviceaccount.yaml
+  - wto-buildconfig.yaml
